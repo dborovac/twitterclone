@@ -7,7 +7,7 @@ public class RegExpr {
 
     /**
      * Allow letters (uppercase and lowercase).
-     * Allow numbers 0 through 9..
+     * Allow numbers 0 through 9.
      */
     public static final String ALPHANUMERIC = "^[a-zA-Z0-9]*$";
 
