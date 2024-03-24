@@ -1,0 +1,48 @@
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@shareable", "@extends", "@external"])
+
+type Query {
+    getUser(userId: String!): User!
+    getMyself: User!
+}
+
+type Mutation {
+    register(request: RegistrationRequest!): GenericResponse!
+    login(request: LoginRequest!): LoginResponse!
+}
+
+type User @key(fields: "id") {
+    id: String!
+    email: String!,
+    handle: String!
+    firstName: String,
+    lastName: String,
+    birthday: String
+}
+
+type Tweet @key(fields: "id") @extends {
+    id: String! @external
+    user: User!
+}
+
+type GenericResponse @shareable {
+    success: Boolean!
+}
+
+input RegistrationRequest {
+    email: String!,
+    firstName: String,
+    lastName: String,
+    birthday: String,
+    handle: String!,
+    password: String!,
+    matchingPassword: String!
+}
+
+input LoginRequest {
+    email: String!,
+    password: String!
+}
+
+type LoginResponse {
+    token: String!
+}

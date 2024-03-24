@@ -1,0 +1,28 @@
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@shareable", "@external", "@extends", "@provides"])
+
+type Query {
+    getMyTweets: [Tweet]!
+}
+
+type Mutation {
+    postTweet(request: PostTweetRequest!): Tweet!
+}
+
+type GenericResponse @shareable {
+    success: Boolean!
+}
+
+type User @key(fields: "id") @extends {
+    id: String! @external
+    tweets: [Tweet]!
+}
+
+type Tweet @key(fields: "id") {
+    id: String!
+    content: String!
+    postedAt: String!
+}
+
+input PostTweetRequest {
+    content: String!
+}
