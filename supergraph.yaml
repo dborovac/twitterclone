@@ -1,0 +1,9 @@
+subgraphs:
+    iam:
+        routing_url: http://localhost:8080/graphql
+        schema:
+            file: C:\Users\Dario\IdeaProjects\iam\src\main\resources\graphql\iam.graphqls
+    tweets:
+        routing_url: http://localhost:8081/graphql
+        schema:
+            file: C:\Users\Dario\IdeaProjects\tweets\src\main\resources\graphql\tweets.graphqls

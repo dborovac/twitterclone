@@ -1,0 +1,11 @@
+cors:
+    allow_any_origin: true
+
+headers:
+    all:
+        request:
+            - propagate:
+                named: authorization
+
+include_subgraph_errors:
+    all: true
