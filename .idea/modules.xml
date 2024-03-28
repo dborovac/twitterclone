@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/twitterclone.iml" filepath="$PROJECT_DIR$/twitterclone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/iam/twitterclone.iam.main.iml" filepath="$PROJECT_DIR$/.idea/modules/iam/twitterclone.iam.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/iam/twitterclone.iam.test.iml" filepath="$PROJECT_DIR$/.idea/modules/iam/twitterclone.iam.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tweets/twitterclone.tweets.main.iml" filepath="$PROJECT_DIR$/.idea/modules/tweets/twitterclone.tweets.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tweets/twitterclone.tweets.test.iml" filepath="$PROJECT_DIR$/.idea/modules/tweets/twitterclone.tweets.test.iml" />
     </modules>
   </component>
 </project>

@@ -3,6 +3,7 @@ package com.twitterclone.iam.user.api.controller;
 import com.twitterclone.iam.common.model.Tweet;
 import com.twitterclone.iam.user.api.service.UserService;
 import com.twitterclone.iam.user.model.domain.User;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -19,8 +20,8 @@ public class UserController {
     private final UserService userService;
 
     @QueryMapping
-    public User getUser(@Argument String userId) {
-        return userService.getById(userId);
+    public List<User> searchUsersByHandle(@Argument String handle) {
+        return userService.searchByHandle(handle);
     }
 
     @QueryMapping

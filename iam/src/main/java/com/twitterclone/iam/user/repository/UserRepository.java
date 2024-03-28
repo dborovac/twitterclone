@@ -1,6 +1,7 @@
 package com.twitterclone.iam.user.repository;
 
 import com.twitterclone.nodes.iam.UserEntity;
+import java.util.List;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
 import org.springframework.stereotype.Repository;
@@ -14,4 +15,6 @@ public interface UserRepository extends Neo4jRepository<UserEntity, String> {
 
     @Query("MATCH (u: User)<-[:TWEETED_BY]-(t: Tweet) WHERE t.id = $tweetId RETURN u")
     Optional<UserEntity> findByTweetId(String tweetId);
+
+    List<UserEntity> findByHandleContainsIgnoreCase(String handle);
 }
