@@ -1,6 +1,7 @@
 extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@shareable", "@extends", "@external"])
 
 type Query {
+    getUserById(userId: String!): User!
     searchUsersByHandle(handle: String!): [User]!
     getMyself: User!
 }
@@ -8,6 +9,7 @@ type Query {
 type Mutation {
     register(request: RegistrationRequest!): GenericResponse!
     login(request: LoginRequest!): LoginResponse!
+    follow(userId: String!): GenericResponse
 }
 
 type User @key(fields: "id") {
@@ -16,12 +18,15 @@ type User @key(fields: "id") {
     handle: String!
     firstName: String,
     lastName: String,
-    birthday: String
+    birthday: String,
+    followers: [User]!
+    followees: [User]!
 }
 
 type Tweet @key(fields: "id") @extends {
     id: String! @external
     user: User!
+    mentions: [User]!
 }
 
 type GenericResponse @shareable {

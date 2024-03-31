@@ -1,7 +1,8 @@
 extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@shareable", "@external", "@extends", "@provides"])
 
 type Query {
-    getMyTweets: [Tweet]!
+    myTweets: [Tweet]!
+    followeeTweets: [Tweet]!
 }
 
 type Mutation {

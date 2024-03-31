@@ -17,4 +17,10 @@ public interface UserRepository extends Neo4jRepository<UserEntity, String> {
     Optional<UserEntity> findByTweetId(String tweetId);
 
     List<UserEntity> findByHandleContainsIgnoreCase(String handle);
+
+    @Query("MATCH (u: User)<-[:MENTIONS]-(t: Tweet) WHERE t.id = $tweetId RETURN u")
+    List<UserEntity> findMentionedInTweet(String tweetId);
+
+    @Query("MATCH (user: User {id: $userId})-[:FOLLOWS]->(anotherUser: User) RETURN COUNT(anotherUser)")
+    Integer getNumberOfFollowees(String userId);
 }

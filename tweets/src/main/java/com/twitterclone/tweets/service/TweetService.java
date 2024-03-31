@@ -53,7 +53,7 @@ public class TweetService {
     }
 
     public List<Tweet> getByUserId(String userId) {
-        return tweetRepository.getAllByUserId(userId)
+        return tweetRepository.getAllByUserIdOrderByPostedAtDesc(userId)
                 .stream()
                 .map(tweetMapper::toDomain)
                 .collect(Collectors.toList());
@@ -61,5 +61,12 @@ public class TweetService {
 
     public List<Tweet> getMyTweets(Authentication authentication) {
         return getByUserId(authentication.getName());
+    }
+
+    public List<Tweet> getFolloweeTweets(Authentication authentication) {
+        return tweetRepository.getFromFollowees(authentication.getName())
+            .stream()
+            .map(tweetMapper::toDomain)
+            .toList();
     }
 }

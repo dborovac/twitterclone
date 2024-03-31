@@ -23,6 +23,12 @@ public class TweetController {
 
     private final TweetService tweetService;
 
+    @QueryMapping
+    @PreAuthorize("isAuthenticated() and !isAnonymous()")
+    public List<Tweet> followeeTweets(@AuthenticationPrincipal Authentication authentication) {
+        return tweetService.getFolloweeTweets(authentication);
+    }
+
     @MutationMapping
     @PreAuthorize("isAuthenticated() and !isAnonymous()")
     public Tweet postTweet(
@@ -33,7 +39,7 @@ public class TweetController {
 
     @QueryMapping
     @PreAuthorize("isAuthenticated() and !isAnonymous()")
-    public List<Tweet> getMyTweets(@AuthenticationPrincipal Authentication authentication) {
+    public List<Tweet> myTweets(@AuthenticationPrincipal Authentication authentication) {
         return tweetService.getMyTweets(authentication);
     }
 
