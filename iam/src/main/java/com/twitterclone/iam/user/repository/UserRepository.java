@@ -21,6 +21,12 @@ public interface UserRepository extends Neo4jRepository<UserEntity, String> {
     @Query("MATCH (u: User)<-[:MENTIONS]-(t: Tweet) WHERE t.id = $tweetId RETURN u")
     List<UserEntity> findMentionedInTweet(String tweetId);
 
-    @Query("MATCH (user: User {id: $userId})-[:FOLLOWS]->(anotherUser: User) RETURN COUNT(anotherUser)")
-    Integer getNumberOfFollowees(String userId);
+    @Query("""
+            MATCH (u: User)
+            WHERE toLower(u.handle) CONTAINS toLower($searchQuery)
+               OR toLower(u.firstName) CONTAINS toLower($searchQuery)
+               OR toLower(u.lastName) CONTAINS toLower($searchQuery)
+            RETURN u;
+            """)
+    List<UserEntity> findByHandleOrFirstNameOrLastNameContainsIgnoreCase(String searchQuery);
 }

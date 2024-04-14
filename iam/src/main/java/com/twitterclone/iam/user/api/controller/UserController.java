@@ -28,8 +28,15 @@ public class UserController {
     }
 
     @QueryMapping
+    @PreAuthorize("isAuthenticated() and !isAnonymous()")
     public List<User> searchUsersByHandle(@Argument String handle) {
         return userService.searchByHandle(handle);
+    }
+
+    @QueryMapping
+    @PreAuthorize("isAuthenticated() and !isAnonymous()")
+    public List<User> searchUsers(@Argument String searchQuery) {
+        return userService.search(searchQuery);
     }
 
     @QueryMapping
@@ -45,7 +52,7 @@ public class UserController {
     }
 
     @SchemaMapping
-    public User user(Tweet tweet) {
+    public User postedBy(Tweet tweet) {
         return userService.getByTweetId(tweet.id());
     }
 

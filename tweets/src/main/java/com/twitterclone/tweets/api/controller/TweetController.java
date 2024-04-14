@@ -1,8 +1,8 @@
 package com.twitterclone.tweets.api.controller;
 
-import com.twitterclone.tweets.model.domain.Tweet;
-import com.twitterclone.tweets.common.model.User;
 import com.twitterclone.tweets.api.request.PostTweetRequest;
+import com.twitterclone.tweets.common.model.User;
+import com.twitterclone.tweets.model.domain.Tweet;
 import com.twitterclone.tweets.service.TweetService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +14,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.List;
+import java.time.Instant;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,13 +27,13 @@ public class TweetController {
 
     @QueryMapping
     @PreAuthorize("isAuthenticated() and !isAnonymous()")
-    public List<Tweet> followeeTweets(@AuthenticationPrincipal Authentication authentication) {
-        return tweetService.getFolloweeTweets(authentication);
+    public Flux<Tweet> followeeTweets(@Argument Instant cursorTimestamp, @AuthenticationPrincipal Authentication authentication) {
+        return tweetService.getFolloweeTweets(cursorTimestamp, authentication);
     }
 
     @MutationMapping
     @PreAuthorize("isAuthenticated() and !isAnonymous()")
-    public Tweet postTweet(
+    public Mono<Tweet> postTweet(
             @Argument @Valid PostTweetRequest request,
             @AuthenticationPrincipal Authentication authentication) {
         return tweetService.post(request, authentication);
@@ -39,12 +41,12 @@ public class TweetController {
 
     @QueryMapping
     @PreAuthorize("isAuthenticated() and !isAnonymous()")
-    public List<Tweet> myTweets(@AuthenticationPrincipal Authentication authentication) {
+    public Flux<Tweet> myTweets(@AuthenticationPrincipal Authentication authentication) {
         return tweetService.getMyTweets(authentication);
     }
 
     @SchemaMapping
-    public List<Tweet> tweets(User user) {
+    public Flux<Tweet> tweets(User user) {
         return tweetService.getByUserId(user.id());
     }
 }

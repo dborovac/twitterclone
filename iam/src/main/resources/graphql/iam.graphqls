@@ -3,6 +3,7 @@ extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@
 type Query {
     getUserById(userId: String!): User!
     searchUsersByHandle(handle: String!): [User]!
+    searchUsers(searchQuery: String!): [User]!
     getMyself: User!
 }
 
@@ -25,7 +26,7 @@ type User @key(fields: "id") {
 
 type Tweet @key(fields: "id") @extends {
     id: String! @external
-    user: User!
+    postedBy: User!
     mentions: [User]!
 }
 

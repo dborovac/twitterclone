@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/iam/twitterclone.iam.main.iml" filepath="$PROJECT_DIR$/.idea/modules/iam/twitterclone.iam.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/nodes/twitterclone.nodes.main.iml" filepath="$PROJECT_DIR$/.idea/modules/nodes/twitterclone.nodes.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/tweets/twitterclone.tweets.main.iml" filepath="$PROJECT_DIR$/.idea/modules/tweets/twitterclone.tweets.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tweets/twitterclone.tweets.test.iml" filepath="$PROJECT_DIR$/.idea/modules/tweets/twitterclone.tweets.test.iml" />
     </modules>
   </component>
 </project>

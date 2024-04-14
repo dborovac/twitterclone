@@ -12,6 +12,8 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.time.Instant;
 import java.util.List;
@@ -25,7 +27,7 @@ public class TweetService {
     private final UserRepository userRepository;
     private final TweetMapper tweetMapper;
 
-    public Tweet post(PostTweetRequest request, Authentication authentication) {
+    public Mono<Tweet> post(PostTweetRequest request, Authentication authentication) {
         final var userEntity = userRepository.findById(authentication.getName())
                 .orElseThrow(() -> new RuntimeException("User with id: " + authentication.getName() + " not found."));
         final var mentionedUserEntities = getMentionedUsers(request);
@@ -36,8 +38,7 @@ public class TweetService {
                 .mentions(mentionedUserEntities)
                 .postedAt(Instant.now())
                 .build();
-        tweetRepository.save(tweetEntity);
-        return tweetMapper.toDomain(tweetEntity);
+        return tweetRepository.save(tweetEntity).map(tweetMapper::toDomain);
     }
 
     private List<UserEntity> getMentionedUsers(PostTweetRequest request) {
@@ -52,21 +53,17 @@ public class TweetService {
             .toList();
     }
 
-    public List<Tweet> getByUserId(String userId) {
+    public Flux<Tweet> getByUserId(String userId) {
         return tweetRepository.getAllByUserIdOrderByPostedAtDesc(userId)
-                .stream()
-                .map(tweetMapper::toDomain)
-                .collect(Collectors.toList());
+                .map(tweetMapper::toDomain);
     }
 
-    public List<Tweet> getMyTweets(Authentication authentication) {
+    public Flux<Tweet> getMyTweets(Authentication authentication) {
         return getByUserId(authentication.getName());
     }
 
-    public List<Tweet> getFolloweeTweets(Authentication authentication) {
-        return tweetRepository.getFromFollowees(authentication.getName())
-            .stream()
-            .map(tweetMapper::toDomain)
-            .toList();
+    public Flux<Tweet> getFolloweeTweets(Instant cursorTimestamp, Authentication authentication) {
+        return tweetRepository.getFromFollowees(cursorTimestamp, authentication.getName())
+            .map(tweetMapper::toDomain);
     }
 }

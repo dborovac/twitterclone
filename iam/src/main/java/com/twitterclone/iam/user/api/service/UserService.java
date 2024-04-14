@@ -36,6 +36,13 @@ public class UserService {
             .toList();
     }
 
+    public List<User> search(String searchQuery) {
+        return userRepository.findByHandleOrFirstNameOrLastNameContainsIgnoreCase(searchQuery)
+                .stream()
+                .map(user -> userMapper.toDomain(user, new CycleAvoidingMappingContext()))
+                .toList();
+    }
+
     public List<User> getMentions(String tweetId) {
         return userRepository.findMentionedInTweet(tweetId)
             .stream()
