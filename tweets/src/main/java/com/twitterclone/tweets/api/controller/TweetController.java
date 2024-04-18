@@ -14,10 +14,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.time.Instant;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,13 +26,13 @@ public class TweetController {
 
     @QueryMapping
     @PreAuthorize("isAuthenticated() and !isAnonymous()")
-    public Flux<Tweet> followeeTweets(@Argument Instant cursorTimestamp, @AuthenticationPrincipal Authentication authentication) {
+    public List<Tweet> followeeTweets(@Argument Instant cursorTimestamp, @AuthenticationPrincipal Authentication authentication) {
         return tweetService.getFolloweeTweets(cursorTimestamp, authentication);
     }
 
     @MutationMapping
     @PreAuthorize("isAuthenticated() and !isAnonymous()")
-    public Mono<Tweet> postTweet(
+    public Tweet postTweet(
             @Argument @Valid PostTweetRequest request,
             @AuthenticationPrincipal Authentication authentication) {
         return tweetService.post(request, authentication);
@@ -41,12 +40,12 @@ public class TweetController {
 
     @QueryMapping
     @PreAuthorize("isAuthenticated() and !isAnonymous()")
-    public Flux<Tweet> myTweets(@AuthenticationPrincipal Authentication authentication) {
+    public List<Tweet> myTweets(@AuthenticationPrincipal Authentication authentication) {
         return tweetService.getMyTweets(authentication);
     }
 
     @SchemaMapping
-    public Flux<Tweet> tweets(User user) {
+    public List<Tweet> tweets(User user) {
         return tweetService.getByUserId(user.id());
     }
 }
