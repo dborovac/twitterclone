@@ -1,10 +1,11 @@
 package com.twitterclone.iam.user.api.controller;
 
 import com.twitterclone.iam.common.model.Tweet;
-import com.twitterclone.iam.common.response.GenericResponse;
 import com.twitterclone.iam.user.api.service.UserService;
 import com.twitterclone.iam.user.model.domain.User;
 import java.util.List;
+import java.util.Set;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -35,8 +36,8 @@ public class UserController {
 
     @QueryMapping
     @PreAuthorize("isAuthenticated() and !isAnonymous()")
-    public List<User> searchUsers(@Argument String searchQuery) {
-        return userService.search(searchQuery);
+    public List<User> searchUsers(@Argument String searchQuery, @AuthenticationPrincipal Authentication authentication) {
+        return userService.search(searchQuery, authentication);
     }
 
     @QueryMapping
@@ -47,8 +48,14 @@ public class UserController {
 
     @MutationMapping
     @PreAuthorize("isAuthenticated() and !isAnonymous()")
-    public GenericResponse follow(@Argument String userId, @AuthenticationPrincipal Authentication authentication) {
+    public User follow(@Argument String userId, @AuthenticationPrincipal Authentication authentication) {
         return userService.follow(userId, authentication);
+    }
+
+    @MutationMapping
+    @PreAuthorize("isAuthenticated() and !isAnonymous()")
+    public User unfollow(@Argument String userId, @AuthenticationPrincipal Authentication authentication) {
+        return userService.unfollow(userId, authentication);
     }
 
     @SchemaMapping
@@ -59,5 +66,15 @@ public class UserController {
     @SchemaMapping
     public List<User> mentions(Tweet tweet) {
         return userService.getMentions(tweet.id());
+    }
+
+    @SchemaMapping
+    public Set<User> likedBy(Tweet tweet) {
+        return userService.getLikes(tweet.id());
+    }
+
+    @SchemaMapping
+    public Boolean likedByMe(Tweet tweet, @AuthenticationPrincipal Authentication authentication) {
+        return userService.isTweetLikedByUser(tweet.id(), authentication.getName());
     }
 }

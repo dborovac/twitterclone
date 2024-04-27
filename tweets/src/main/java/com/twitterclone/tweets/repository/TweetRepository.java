@@ -17,7 +17,7 @@ public interface TweetRepository extends Neo4jRepository<TweetEntity, String> {
     @Query("""
             MATCH (user: User {id: $userId})-[:FOLLOWS]->(anotherUser: User)<-[:TWEETED_BY]-(tweet: Tweet)
             WHERE NOT (user)<-[:TWEETED_BY]-(tweet) AND ($cursorTimestamp IS NULL OR tweet.postedAt < $cursorTimestamp)
-            RETURN tweet ORDER BY tweet.postedAt DESC LIMIT 2
+            RETURN tweet ORDER BY tweet.postedAt DESC LIMIT 5
             """)
     List<TweetEntity> getFromFollowees(Instant cursorTimestamp, String userId);
 }

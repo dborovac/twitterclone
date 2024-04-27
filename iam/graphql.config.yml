@@ -1,2 +1,1 @@
-schema: schema.graphql
-documents: '**/*.graphqls'
+schema: src/main/resources/graphql/iam.graphqls

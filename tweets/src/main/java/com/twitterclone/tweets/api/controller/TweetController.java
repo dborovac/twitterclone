@@ -44,6 +44,12 @@ public class TweetController {
         return tweetService.getMyTweets(authentication);
     }
 
+    @MutationMapping
+    @PreAuthorize("isAuthenticated() and !isAnonymous()")
+    public Tweet toggleLike(@Argument String tweetId, @AuthenticationPrincipal Authentication authentication) {
+        return tweetService.toggleLike(tweetId, authentication);
+    }
+
     @SchemaMapping
     public List<Tweet> tweets(User user) {
         return tweetService.getByUserId(user.id());

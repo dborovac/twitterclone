@@ -10,16 +10,17 @@ type Query {
 type Mutation {
     register(request: RegistrationRequest!): GenericResponse!
     login(request: LoginRequest!): LoginResponse!
-    follow(userId: String!): GenericResponse
+    follow(userId: String!): User!
+    unfollow(userId: String!): User!
 }
 
 type User @key(fields: "id") {
     id: String!
-    email: String!,
+    email: String!
     handle: String!
-    firstName: String,
-    lastName: String,
-    birthday: String,
+    firstName: String
+    lastName: String
+    birthday: String
     followers: [User]!
     followees: [User]!
 }
@@ -28,6 +29,8 @@ type Tweet @key(fields: "id") @extends {
     id: String! @external
     postedBy: User!
     mentions: [User]!
+    likedBy: [User]!
+    likedByMe: Boolean!
 }
 
 type GenericResponse @shareable {

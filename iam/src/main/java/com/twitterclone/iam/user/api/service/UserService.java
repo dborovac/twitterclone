@@ -1,14 +1,16 @@
 package com.twitterclone.iam.user.api.service;
 
 import com.twitterclone.iam.common.mapping.CycleAvoidingMappingContext;
-import com.twitterclone.iam.common.response.GenericResponse;
 import com.twitterclone.iam.user.mapper.UserMapper;
 import com.twitterclone.iam.user.model.domain.User;
 import com.twitterclone.iam.user.repository.UserRepository;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -36,8 +38,8 @@ public class UserService {
             .toList();
     }
 
-    public List<User> search(String searchQuery) {
-        return userRepository.findByHandleOrFirstNameOrLastNameContainsIgnoreCase(searchQuery)
+    public List<User> search(String searchQuery, Authentication authentication) {
+        return userRepository.findByHandleOrFirstNameOrLastNameContainsIgnoreCase(searchQuery, authentication.getName())
                 .stream()
                 .map(user -> userMapper.toDomain(user, new CycleAvoidingMappingContext()))
                 .toList();
@@ -50,7 +52,7 @@ public class UserService {
             .toList();
     }
 
-    public GenericResponse follow(String userId, Authentication authentication) {
+    public User follow(String userId, Authentication authentication) {
         final var myself = userRepository.findById(authentication.getName())
             .orElseThrow(() -> new RuntimeException("User with id: " + authentication.getName() + " not found."));
         final var followee = userRepository.findById(userId)
@@ -58,6 +60,33 @@ public class UserService {
         followee.getFollowers().add(myself);
         myself.getFollowees().add(followee);
         userRepository.save(followee);
-        return new GenericResponse(true);
+        userRepository.save(myself);
+        return userMapper.toDomain(followee, new CycleAvoidingMappingContext());
+    }
+
+    public User unfollow(String userId, Authentication authentication) {
+        final var myself = userRepository.findById(authentication.getName())
+                .orElseThrow(() -> new RuntimeException("User with id: " + authentication.getName() + " not found."));
+        final var followee = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User with id: " + userId + " not found."));
+//        if (!followee.getFollowers().remove(myself) || !myself.getFollowees().remove(followee)) {
+//            throw new RuntimeException("User with id: " + authentication.getName() + " does not follow user with id: " + userId + ". Because of this, failed to unfollow.");
+//        }
+        followee.getFollowers().remove(myself);
+        userRepository.save(followee);
+        myself.getFollowees().remove(followee);
+        userRepository.save(myself);
+        return userMapper.toDomain(followee, new CycleAvoidingMappingContext());
+    }
+
+    public Set<User> getLikes(String tweetId) {
+        return userRepository.findUsersThatLikeThisTweet(tweetId)
+                .stream()
+                .map(user -> userMapper.toDomain(user, new CycleAvoidingMappingContext()))
+                .collect(Collectors.toSet());
+    }
+
+    public Boolean isTweetLikedByUser(String tweetId, String userId) {
+        return userRepository.hasUserLikedTweet(userId, tweetId);
     }
 }

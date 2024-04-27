@@ -1,12 +1,13 @@
 package com.twitterclone.iam.user.repository;
 
 import com.twitterclone.nodes.iam.UserEntity;
-import java.util.List;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface UserRepository extends Neo4jRepository<UserEntity, String> {
@@ -23,10 +24,16 @@ public interface UserRepository extends Neo4jRepository<UserEntity, String> {
 
     @Query("""
             MATCH (u: User)
-            WHERE toLower(u.handle) CONTAINS toLower($searchQuery)
+            WHERE u.id <> $myUserId AND toLower(u.handle) CONTAINS toLower($searchQuery)
                OR toLower(u.firstName) CONTAINS toLower($searchQuery)
                OR toLower(u.lastName) CONTAINS toLower($searchQuery)
             RETURN u;
             """)
-    List<UserEntity> findByHandleOrFirstNameOrLastNameContainsIgnoreCase(String searchQuery);
+    List<UserEntity> findByHandleOrFirstNameOrLastNameContainsIgnoreCase(String searchQuery, String myUserId);
+
+    @Query("MATCH (u: User)<-[:LIKED_BY]-(t: Tweet) where t.id = $tweetId RETURN u")
+    Set<UserEntity> findUsersThatLikeThisTweet(String tweetId);
+
+    @Query("MATCH (u: User {id: $userId})<-[r:LIKED_BY]-(t: Tweet {id: $tweetId}) RETURN COUNT(r) > 0")
+    Boolean hasUserLikedTweet(String userId, String tweetId);
 }

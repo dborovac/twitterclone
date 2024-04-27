@@ -3,7 +3,13 @@ package com.twitterclone.tweets.model.domain;
 import com.twitterclone.tweets.common.model.User;
 
 import java.time.Instant;
-import java.util.List;
+import java.util.Set;
 
-public record Tweet(String id, String content, User user, List<User> mentions, Instant postedAt) {
+public record Tweet(String id,
+                    String content,
+                    User user,
+                    Set<User> mentions,
+                    Set<User> likedBy,
+                    Instant postedAt,
+                    Boolean likedByMe) {
 }
