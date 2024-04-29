@@ -50,6 +50,12 @@ public class TweetController {
         return tweetService.toggleLike(tweetId, authentication);
     }
 
+    @QueryMapping
+    @PreAuthorize("isAuthenticated() and !isAnonymous()")
+    public List<Tweet> taggedWith(@Argument String hashtag, @AuthenticationPrincipal Authentication authentication) {
+        return tweetService.getAllByHashtag(hashtag, authentication);
+    }
+
     @SchemaMapping
     public List<Tweet> tweets(User user) {
         return tweetService.getByUserId(user.id());

@@ -36,4 +36,7 @@ public interface UserRepository extends Neo4jRepository<UserEntity, String> {
 
     @Query("MATCH (u: User {id: $userId})<-[r:LIKED_BY]-(t: Tweet {id: $tweetId}) RETURN COUNT(r) > 0")
     Boolean hasUserLikedTweet(String userId, String tweetId);
+
+    @Query("MATCH (u1: User { id: $myUserId })-[f: FOLLOWS]->(u2: User { id: $userId }) DETACH DELETE f")
+    void deleteFollowsRelationship(String myUserId, String userId);
 }

@@ -3,7 +3,6 @@ package com.twitterclone.nodes.iam;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.springframework.data.annotation.Version;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
@@ -47,7 +46,4 @@ public class UserEntity {
 
     @Relationship(type = "FOLLOWS", direction = Direction.OUTGOING)
     private Set<UserEntity> followees;
-
-    @Version
-    private Long version;
 }

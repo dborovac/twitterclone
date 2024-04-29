@@ -1,4 +1,4 @@
-package com.twitterclone.iam.user.api.service;
+package com.twitterclone.iam.user.service;
 
 import com.twitterclone.iam.common.mapping.CycleAvoidingMappingContext;
 import com.twitterclone.iam.user.mapper.UserMapper;
@@ -69,13 +69,7 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User with id: " + authentication.getName() + " not found."));
         final var followee = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User with id: " + userId + " not found."));
-//        if (!followee.getFollowers().remove(myself) || !myself.getFollowees().remove(followee)) {
-//            throw new RuntimeException("User with id: " + authentication.getName() + " does not follow user with id: " + userId + ". Because of this, failed to unfollow.");
-//        }
-        followee.getFollowers().remove(myself);
-        userRepository.save(followee);
-        myself.getFollowees().remove(followee);
-        userRepository.save(myself);
+        userRepository.deleteFollowsRelationship(myself.getId(), followee.getId());
         return userMapper.toDomain(followee, new CycleAvoidingMappingContext());
     }
 

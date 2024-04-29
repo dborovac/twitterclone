@@ -3,6 +3,7 @@ extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@
 type Query {
     myTweets: [Tweet]!
     followeeTweets(cursorTimestamp: String): [Tweet]!
+    taggedWith(hashtag: String!): [Tweet]!
 }
 
 type Mutation {
@@ -23,6 +24,12 @@ type Tweet @key(fields: "id") {
     id: String!
     content: String!
     postedAt: String!
+    hashtags: [Hashtag!]!
+}
+
+type Hashtag {
+    id: String!
+    name: String!
 }
 
 input PostTweetRequest {

@@ -10,6 +10,7 @@ public record Tweet(String id,
                     User user,
                     Set<User> mentions,
                     Set<User> likedBy,
+                    Set<Hashtag> hashtags,
                     Instant postedAt,
                     Boolean likedByMe) {
 }

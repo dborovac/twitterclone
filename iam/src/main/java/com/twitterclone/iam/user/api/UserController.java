@@ -1,7 +1,7 @@
-package com.twitterclone.iam.user.api.controller;
+package com.twitterclone.iam.user.api;
 
 import com.twitterclone.iam.common.model.Tweet;
-import com.twitterclone.iam.user.api.service.UserService;
+import com.twitterclone.iam.user.service.UserService;
 import com.twitterclone.iam.user.model.domain.User;
 import java.util.List;
 import java.util.Set;

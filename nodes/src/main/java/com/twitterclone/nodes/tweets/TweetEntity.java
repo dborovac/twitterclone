@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.springframework.data.annotation.Version;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
@@ -44,6 +43,6 @@ public class TweetEntity {
     @Relationship(type = "LIKED_BY", direction = Direction.OUTGOING)
     private Set<UserEntity> likedBy;
 
-    @Version
-    private Long version;
+    @Relationship(type = "CONTAINS_HASHTAG", direction = Direction.OUTGOING)
+    private Set<HashtagEntity> hashtags;
 }
