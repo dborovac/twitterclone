@@ -3,6 +3,7 @@ package com.twitterclone.tweets.service;
 import com.twitterclone.nodes.tweets.HashtagEntity;
 import com.twitterclone.tweets.api.request.PostTweetRequest;
 import com.twitterclone.tweets.common.RegExpr;
+import com.twitterclone.tweets.model.domain.Hashtag;
 import com.twitterclone.tweets.repository.HashtagRepository;
 import com.twitterclone.tweets.utils.StringUtils;
 import lombok.RequiredArgsConstructor;
@@ -27,5 +28,12 @@ public class HashtagService {
                     return optionalHashtag.orElseGet(() -> hashtagRepository.save(HashtagEntity.builder().name(hashtagString).build()));
                 })
                 .collect(Collectors.toSet());
+    }
+
+    public Hashtag getHashtag(String hashtag) {
+        final Optional<HashtagEntity> optionalHashtag = hashtagRepository.findByName(hashtag);
+        return optionalHashtag
+            .map(hashtagEntity -> new Hashtag(hashtagEntity.getId(), hashtagEntity.getName()))
+            .orElseThrow(() -> new RuntimeException("Hashtag " + hashtag + " not found."));
     }
 }

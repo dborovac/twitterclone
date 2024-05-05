@@ -2,6 +2,7 @@ package com.twitterclone.tweets.api.controller;
 
 import com.twitterclone.tweets.api.request.PostTweetRequest;
 import com.twitterclone.tweets.common.model.User;
+import com.twitterclone.tweets.model.domain.HashtagTrend;
 import com.twitterclone.tweets.model.domain.Tweet;
 import com.twitterclone.tweets.service.TweetService;
 import jakarta.validation.Valid;
@@ -26,8 +27,8 @@ public class TweetController {
 
     @QueryMapping
     @PreAuthorize("isAuthenticated() and !isAnonymous()")
-    public List<Tweet> followeeTweets(@Argument Instant cursorTimestamp, @AuthenticationPrincipal Authentication authentication) {
-        return tweetService.getFolloweeTweets(cursorTimestamp, authentication);
+    public List<Tweet> followeeTweets(@Argument Integer first, @Argument Integer offset, @AuthenticationPrincipal Authentication authentication) {
+        return tweetService.getFolloweeTweets(first, offset, authentication);
     }
 
     @MutationMapping
@@ -54,6 +55,12 @@ public class TweetController {
     @PreAuthorize("isAuthenticated() and !isAnonymous()")
     public List<Tweet> taggedWith(@Argument String hashtag, @AuthenticationPrincipal Authentication authentication) {
         return tweetService.getAllByHashtag(hashtag, authentication);
+    }
+
+    @QueryMapping
+    @PreAuthorize("isAuthenticated() and !isAnonymous()")
+    public HashtagTrend trendForHashtag(@Argument String hashtag) {
+        return tweetService.getTrendForHashtag(hashtag);
     }
 
     @SchemaMapping

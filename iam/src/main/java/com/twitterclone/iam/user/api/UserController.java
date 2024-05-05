@@ -69,7 +69,8 @@ public class UserController {
     }
 
     @SchemaMapping
-    public Set<User> likedBy(Tweet tweet) {
+    public Set<User> likedBy(Tweet tweet, @Argument Integer first, @Argument Integer offset) {
+        System.out.println(first + offset);
         return userService.getLikes(tweet.id());
     }
 

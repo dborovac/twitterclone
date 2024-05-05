@@ -1,18 +1,15 @@
-extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@shareable", "@external", "@extends", "@provides"])
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@external", "@extends", "@provides"])
 
 type Query {
     myTweets: [Tweet]!
-    followeeTweets(cursorTimestamp: String): [Tweet]!
+    followeeTweets(first: Int!, offset: Int!): [Tweet]!
     taggedWith(hashtag: String!): [Tweet]!
+    trendForHashtag(hashtag: String!): HashtagTrend!
 }
 
 type Mutation {
     postTweet(request: PostTweetRequest!): Tweet!
     toggleLike(tweetId: String!): Tweet!
-}
-
-type GenericResponse @shareable {
-    success: Boolean!
 }
 
 type User @key(fields: "id") @extends {
@@ -30,6 +27,11 @@ type Tweet @key(fields: "id") {
 type Hashtag {
     id: String!
     name: String!
+}
+
+type HashtagTrend {
+    hashtag: Hashtag!
+    tweetCount: Int!
 }
 
 input PostTweetRequest {

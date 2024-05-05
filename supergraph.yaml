@@ -2,8 +2,8 @@ subgraphs:
     iam:
         routing_url: http://localhost:8080/graphql
         schema:
-            file: C:\Users\Dario\IdeaProjects\twitterclone\iam\src\main\resources\graphql\iam.graphqls
+            file: C:\Users\bodar\IdeaProjects\twitterclone\iam\src\main\resources\graphql\iam.graphqls
     tweets:
         routing_url: http://localhost:8081/graphql
         schema:
-            file: C:\Users\Dario\IdeaProjects\twitterclone\tweets\src\main\resources\graphql\tweets.graphqls
+            file: C:\Users\bodar\IdeaProjects\twitterclone\tweets\src\main\resources\graphql\tweets.graphqls

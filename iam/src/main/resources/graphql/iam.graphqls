@@ -1,4 +1,4 @@
-extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@shareable", "@extends", "@external"])
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@extends", "@external"])
 
 type Query {
     getUserById(userId: String!): User!
@@ -29,11 +29,16 @@ type Tweet @key(fields: "id") @extends {
     id: String! @external
     postedBy: User!
     mentions: [User]!
-    likedBy: [User]!
+    likedBy(pageRequest: PageRequest!): [User]!
     likedByMe: Boolean!
 }
 
-type GenericResponse @shareable {
+input PageRequest {
+    first: Int!
+    offset: Int!
+}
+
+type GenericResponse {
     success: Boolean!
 }
 

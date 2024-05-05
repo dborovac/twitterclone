@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49521bd6-b5e4-4fab-b5a4-8197e9d693b2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/nodes/src/main/java/com/twitterclone/nodes/tweets/HashtagEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/common/RegExpr.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/model/domain/Hashtag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/repository/HashtagRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/service/HashtagService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/utils/StringUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/model/domain/HashtagTrend.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/sha1-checksums.bin" afterDir="false" />
@@ -20,17 +15,17 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/user/api/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/user/api/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/user/api/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/user/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/user/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/user/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodes/src/main/java/com/twitterclone/nodes/iam/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/nodes/src/main/java/com/twitterclone/nodes/iam/UserEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodes/src/main/java/com/twitterclone/nodes/tweets/TweetEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/nodes/src/main/java/com/twitterclone/nodes/tweets/TweetEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/user/api/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/user/api/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iam/src/main/resources/graphql/iam.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/resources/graphql/iam.graphqls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/supergraph.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/supergraph.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/api/controller/TweetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/api/controller/TweetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/model/domain/Tweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/model/domain/Tweet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/repository/TweetRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/repository/TweetRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/service/HashtagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/service/HashtagService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/service/TweetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/service/TweetService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tweets/src/main/resources/graphql/tweets.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/resources/graphql/tweets.graphqls" afterDir="false" />
     </list>
@@ -96,6 +91,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -304,10 +300,27 @@
       <workItem from="1714135594376" duration="3820000" />
       <workItem from="1714212610968" duration="4847000" />
       <workItem from="1714380675282" duration="2260000" />
+      <workItem from="1714549663299" duration="2240000" />
+      <workItem from="1714651229447" duration="4285000" />
+      <workItem from="1714749040540" duration="4398000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>

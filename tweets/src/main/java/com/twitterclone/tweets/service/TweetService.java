@@ -1,23 +1,23 @@
 package com.twitterclone.tweets.service;
 
 import com.twitterclone.nodes.iam.UserEntity;
-import com.twitterclone.nodes.tweets.HashtagEntity;
 import com.twitterclone.nodes.tweets.TweetEntity;
 import com.twitterclone.tweets.api.request.PostTweetRequest;
-import com.twitterclone.tweets.common.RegExpr;
 import com.twitterclone.tweets.common.repository.UserRepository;
 import com.twitterclone.tweets.mapper.TweetMapper;
+import com.twitterclone.tweets.model.domain.Hashtag;
+import com.twitterclone.tweets.model.domain.HashtagTrend;
 import com.twitterclone.tweets.model.domain.Tweet;
-import com.twitterclone.tweets.repository.HashtagRepository;
 import com.twitterclone.tweets.repository.TweetRepository;
 import com.twitterclone.tweets.utils.StringUtils;
+import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-
-import java.time.Instant;
-import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -64,8 +64,8 @@ public class TweetService {
         return getByUserId(authentication.getName());
     }
 
-    public List<Tweet> getFolloweeTweets(Instant cursorTimestamp, Authentication authentication) {
-        return tweetRepository.getFromFollowees(cursorTimestamp, authentication.getName())
+    public List<Tweet> getFolloweeTweets(Integer first, Integer offset, Authentication authentication) {
+        return tweetRepository.getFromFollowees(first, offset, authentication.getName())
                 .stream()
                 .map(tweetEntity -> tweetMapper.toDomain(tweetEntity, tweetEntity.getLikedBy().stream().anyMatch(a -> a.getId().equals(authentication.getName()))))
                 .toList();
@@ -92,5 +92,11 @@ public class TweetService {
                 .stream()
                 .map(tweetEntity -> tweetMapper.toDomain(tweetEntity, tweetEntity.getLikedBy().stream().anyMatch(a -> a.getId().equals(authentication.getName()))))
                 .toList();
+    }
+
+    public HashtagTrend getTrendForHashtag(String hashtagName) {
+        final Hashtag hashtag = hashtagService.getHashtag(hashtagName);
+        final long tweetCount = tweetRepository.countAllByHashtagsNameIgnoreCase(hashtagName);
+        return new HashtagTrend(hashtag, tweetCount);
     }
 }
