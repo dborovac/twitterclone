@@ -2,6 +2,7 @@ package com.twitterclone.tweets.repository;
 
 
 import com.twitterclone.nodes.tweets.TweetEntity;
+import com.twitterclone.tweets.common.PageRequest;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
 import org.springframework.stereotype.Repository;
@@ -28,5 +29,8 @@ public interface TweetRepository extends Neo4jRepository<TweetEntity, String> {
 
     List<TweetEntity> getAllByHashtagsNameIgnoreCase(String hashtag);
 
-    long countAllByHashtagsNameIgnoreCase(String hashtag);
+    Integer countAllByHashtagsNameIgnoreCase(String hashtag);
+
+    @Query("MATCH (:Tweet{id: $tweetId})-[r:LIKED_BY]->() RETURN count(r)")
+    Integer countNumberOfLikes(String tweetId);
 }

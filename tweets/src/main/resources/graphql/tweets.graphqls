@@ -2,9 +2,11 @@ extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@
 
 type Query {
     myTweets: [Tweet]!
-    followeeTweets(first: Int!, offset: Int!): [Tweet]!
+    tweetById(id: String!): Tweet!
+    followeeTweets(pageRequest: PageRequest!): [Tweet]!
     taggedWith(hashtag: String!): [Tweet]!
     trendForHashtag(hashtag: String!): HashtagTrend!
+    topHashtagOccurrences(top: Int!): [HashtagOccurrences]!
 }
 
 type Mutation {
@@ -22,6 +24,13 @@ type Tweet @key(fields: "id") {
     content: String!
     postedAt: String!
     hashtags: [Hashtag!]!
+    numberOfLikes: Int!
+    relevance: Int!
+}
+
+input PageRequest {
+    first: Int!
+    offset: Int!
 }
 
 type Hashtag {
@@ -36,4 +45,9 @@ type HashtagTrend {
 
 input PostTweetRequest {
     content: String!
+}
+
+type HashtagOccurrences {
+    hashtagName: String!
+    occurrences: Int!
 }

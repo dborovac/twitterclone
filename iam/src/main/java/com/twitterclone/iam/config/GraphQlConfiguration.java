@@ -2,7 +2,7 @@ package com.twitterclone.iam.config;
 
 import com.apollographql.federation.graphqljava.Federation;
 import com.apollographql.federation.graphqljava._Entity;
-import com.twitterclone.iam.common.model.Tweet;
+import com.twitterclone.iam.domain.Tweet;
 import graphql.schema.DataFetcher;
 import org.springframework.boot.autoconfigure.graphql.GraphQlSourceBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.twitterclone.iam.common.model.Tweet.TWEET_TYPE;
+import static com.twitterclone.iam.domain.Tweet.TWEET_TYPE;
 
 @Configuration
 public class GraphQlConfiguration {

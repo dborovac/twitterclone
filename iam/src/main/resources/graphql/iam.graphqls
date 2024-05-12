@@ -5,6 +5,7 @@ type Query {
     searchUsersByHandle(handle: String!): [User]!
     searchUsers(searchQuery: String!): [User]!
     getMyself: User!
+    followRecommendations(first: Int!): [FollowRecommendation]!
 }
 
 type Mutation {
@@ -18,8 +19,8 @@ type User @key(fields: "id") {
     id: String!
     email: String!
     handle: String!
-    firstName: String
-    lastName: String
+    firstName: String!
+    lastName: String!
     birthday: String
     followers: [User]!
     followees: [User]!
@@ -44,8 +45,8 @@ type GenericResponse {
 
 input RegistrationRequest {
     email: String!,
-    firstName: String,
-    lastName: String,
+    firstName: String!,
+    lastName: String!,
     birthday: String,
     handle: String!,
     password: String!,
@@ -59,4 +60,10 @@ input LoginRequest {
 
 type LoginResponse {
     token: String!
+}
+
+type FollowRecommendation {
+    recommendation: User!
+    relevance: Float!
+    mutualFollowees: [User!]!
 }

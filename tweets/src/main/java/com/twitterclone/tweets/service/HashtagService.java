@@ -3,9 +3,10 @@ package com.twitterclone.tweets.service;
 import com.twitterclone.nodes.tweets.HashtagEntity;
 import com.twitterclone.tweets.api.request.PostTweetRequest;
 import com.twitterclone.tweets.common.RegExpr;
-import com.twitterclone.tweets.model.domain.Hashtag;
+import com.twitterclone.tweets.domain.Hashtag;
+import com.twitterclone.tweets.repository.HashtagOccurrences;
 import com.twitterclone.tweets.repository.HashtagRepository;
-import com.twitterclone.tweets.utils.StringUtils;
+import com.twitterclone.tweets.common.utils.StringUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,5 +36,9 @@ public class HashtagService {
         return optionalHashtag
             .map(hashtagEntity -> new Hashtag(hashtagEntity.getId(), hashtagEntity.getName()))
             .orElseThrow(() -> new RuntimeException("Hashtag " + hashtag + " not found."));
+    }
+
+    public List<HashtagOccurrences> getTopHashtagOccurrences(Integer top) {
+        return hashtagRepository.findTopHashtagOccurrences(top);
     }
 }

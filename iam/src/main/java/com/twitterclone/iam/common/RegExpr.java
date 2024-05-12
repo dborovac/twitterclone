@@ -13,8 +13,8 @@ public class RegExpr {
 
     /**
      * Allow letters (uppercase and lowercase).
-     * Optionally allow spaces and hyphens for names like "Mary Jane" or "John-Smith".
+     * Optionally allow spaces, hyphens and apostrophes for names like "Mary Jane", "John-Smith" or "Conan O'Brien".
      * Do not allow numbers or special characters (such as @, #, $, etc.).
      */
-    public static final String PERSONAL_NAME = "^[A-Za-z]+(?:[-\\s][A-Za-z]+)*$";
+    public static final String PERSONAL_NAME = "^[A-Za-z]+(?:[-'\\s][A-Za-z]+)*$";
 }

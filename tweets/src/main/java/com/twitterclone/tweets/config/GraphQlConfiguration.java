@@ -2,7 +2,7 @@ package com.twitterclone.tweets.config;
 
 import com.apollographql.federation.graphqljava.Federation;
 import com.apollographql.federation.graphqljava._Entity;
-import com.twitterclone.tweets.common.model.User;
+import com.twitterclone.tweets.domain.User;
 import graphql.schema.DataFetcher;
 import org.springframework.boot.autoconfigure.graphql.GraphQlSourceBuilderCustomizer;
 import org.springframework.context.annotation.Bean;

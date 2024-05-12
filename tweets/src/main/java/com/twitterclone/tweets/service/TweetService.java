@@ -3,13 +3,14 @@ package com.twitterclone.tweets.service;
 import com.twitterclone.nodes.iam.UserEntity;
 import com.twitterclone.nodes.tweets.TweetEntity;
 import com.twitterclone.tweets.api.request.PostTweetRequest;
-import com.twitterclone.tweets.common.repository.UserRepository;
+import com.twitterclone.tweets.common.PageRequest;
+import com.twitterclone.tweets.repository.UserRepository;
 import com.twitterclone.tweets.mapper.TweetMapper;
-import com.twitterclone.tweets.model.domain.Hashtag;
-import com.twitterclone.tweets.model.domain.HashtagTrend;
-import com.twitterclone.tweets.model.domain.Tweet;
+import com.twitterclone.tweets.domain.Hashtag;
+import com.twitterclone.tweets.domain.HashtagTrend;
+import com.twitterclone.tweets.domain.Tweet;
 import com.twitterclone.tweets.repository.TweetRepository;
-import com.twitterclone.tweets.utils.StringUtils;
+import com.twitterclone.tweets.common.utils.StringUtils;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +42,11 @@ public class TweetService {
                 .hashtags(hashtags)
                 .postedAt(Instant.now())
                 .build();
-        return tweetMapper.toDomain(tweetRepository.save(tweetEntity), false);
+        return tweetMapper.toDomain(tweetRepository.save(tweetEntity));
+    }
+
+    public Tweet getById(String id) {
+        return tweetMapper.toDomain(tweetRepository.findById(id).orElseThrow(() -> new RuntimeException("Tweet with id: " + id + " not found.")));
     }
 
     private Set<UserEntity> getMentionedUsers(PostTweetRequest request) {
@@ -56,7 +61,7 @@ public class TweetService {
     public List<Tweet> getByUserId(String userId) {
         return tweetRepository.getAllByUserIdOrderByPostedAtDesc(userId)
                 .stream()
-                .map(tweetEntity -> tweetMapper.toDomain(tweetEntity, tweetEntity.getLikedBy().stream().anyMatch(a -> a.getId().equals(userId))))
+                .map(tweetMapper::toDomain)
                 .toList();
     }
 
@@ -64,10 +69,10 @@ public class TweetService {
         return getByUserId(authentication.getName());
     }
 
-    public List<Tweet> getFolloweeTweets(Integer first, Integer offset, Authentication authentication) {
-        return tweetRepository.getFromFollowees(first, offset, authentication.getName())
+    public List<Tweet> getFolloweeTweets(PageRequest pageRequest, Authentication authentication) {
+        return tweetRepository.getFromFollowees(pageRequest.first(), pageRequest.offset(), authentication.getName())
                 .stream()
-                .map(tweetEntity -> tweetMapper.toDomain(tweetEntity, tweetEntity.getLikedBy().stream().anyMatch(a -> a.getId().equals(authentication.getName()))))
+                .map(tweetMapper::toDomain)
                 .toList();
     }
 
@@ -84,19 +89,23 @@ public class TweetService {
         }
         tweet.setLikedBy(likedBy);
         tweetRepository.save(tweet);
-        return tweetMapper.toDomain(tweet, likedBy.contains(myself));
+        return tweetMapper.toDomain(tweet);
     }
 
-    public List<Tweet> getAllByHashtag(String hashtag, Authentication authentication) {
+    public List<Tweet> getAllByHashtag(String hashtag) {
         return tweetRepository.getAllByHashtagsNameIgnoreCase(hashtag)
                 .stream()
-                .map(tweetEntity -> tweetMapper.toDomain(tweetEntity, tweetEntity.getLikedBy().stream().anyMatch(a -> a.getId().equals(authentication.getName()))))
+                .map(tweetMapper::toDomain)
                 .toList();
     }
 
     public HashtagTrend getTrendForHashtag(String hashtagName) {
         final Hashtag hashtag = hashtagService.getHashtag(hashtagName);
-        final long tweetCount = tweetRepository.countAllByHashtagsNameIgnoreCase(hashtagName);
+        final Integer tweetCount = tweetRepository.countAllByHashtagsNameIgnoreCase(hashtagName);
         return new HashtagTrend(hashtag, tweetCount);
+    }
+
+    public Integer getNumberOfLikes(Tweet tweet) {
+        return tweetRepository.countNumberOfLikes(tweet.id());
     }
 }
