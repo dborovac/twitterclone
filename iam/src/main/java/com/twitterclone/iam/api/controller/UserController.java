@@ -1,13 +1,15 @@
 package com.twitterclone.iam.api.controller;
 
 import com.twitterclone.iam.common.PageRequest;
-import com.twitterclone.iam.domain.Tweet;
 import com.twitterclone.iam.domain.FollowRecommendation;
+import com.twitterclone.iam.domain.Tweet;
 import com.twitterclone.iam.domain.User;
-import com.twitterclone.iam.repository.UserRepository;
 import com.twitterclone.iam.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.graphql.data.method.annotation.*;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,7 +24,6 @@ import java.util.Set;
 public class UserController {
 
     private final UserService userService;
-    private final UserRepository userRepository;
 
     @QueryMapping
     public User getUserById(@Argument String userId) {

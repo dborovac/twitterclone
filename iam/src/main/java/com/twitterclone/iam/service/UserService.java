@@ -101,7 +101,7 @@ public class UserService {
         return result;
     }
 
-    public Flux<FollowNotification> getFollowerNotifications(String myUserId) {
+    public Flux<FollowNotification> getFollowNotifications(String myUserId) {
         return reactiveUserRepository.findFollowersForUser(myUserId)
                 .map(follower -> new FollowNotification(userMapper.toDomain(follower, new CycleAvoidingMappingContext()), Instant.now()));
     }

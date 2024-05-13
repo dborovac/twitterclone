@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49521bd6-b5e4-4fab-b5a4-8197e9d693b2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/common/PageRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/config/WebSocketConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/domain/FollowNotification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/domain/FollowRecommendation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/repository/ReactiveUserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/repository/dto/FollowRecommendationDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/common/PageRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/domain/HashtagTrend.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/repository/HashtagOccurrences.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/api/controller/WebSocketController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" afterDir="false" />
@@ -23,44 +15,10 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/iam/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/common/RegExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/common/RegExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/common/model/Tweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/domain/Tweet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/common/response/GenericResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/api/response/GenericResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/config/GraphQlConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/config/GraphQlConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/login/api/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/api/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/login/api/request/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/api/request/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/login/api/response/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/api/response/LoginResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/login/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/service/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/registration/api/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/api/controller/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/registration/api/request/RegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/api/request/RegistrationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/registration/service/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/service/RegistrationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/user/api/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/api/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/user/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/user/model/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/user/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam/src/main/resources/graphql/iam.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/resources/graphql/iam.graphqls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/supergraph.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/supergraph.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/api/controller/TweetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/api/controller/TweetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/common/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/common/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/common/response/GenericResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/api/response/GenericResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/config/GraphQlConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/config/GraphQlConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/mapper/TweetMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/mapper/TweetMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/model/domain/Hashtag.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/domain/Hashtag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/model/domain/HashtagTrend.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/model/domain/Tweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/domain/Tweet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/repository/HashtagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/repository/HashtagRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/repository/TweetRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/repository/TweetRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/service/HashtagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/service/HashtagService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/service/TweetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/service/TweetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/java/com/twitterclone/tweets/common/utils/StringUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tweets/src/main/resources/graphql/tweets.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/tweets/src/main/resources/graphql/tweets.graphqls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/api/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/api/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/config/WebSocketConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/config/WebSocketConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam/src/main/java/com/twitterclone/iam/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,6 +130,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.IamApplication.executor": "Run",
     "Spring Boot.TweetsApplication.executor": "Run",
     "aspect.path.notification.shown": "true",
@@ -341,7 +300,7 @@
       <workItem from="1714992554199" duration="4994000" />
       <workItem from="1715097304021" duration="4242000" />
       <workItem from="1715176432010" duration="1191000" />
-      <workItem from="1715509460487" duration="9437000" />
+      <workItem from="1715509460487" duration="17733000" />
     </task>
     <servers />
   </component>
