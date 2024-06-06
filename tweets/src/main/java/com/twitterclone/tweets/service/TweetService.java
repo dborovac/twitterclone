@@ -58,15 +58,15 @@ public class TweetService {
                 .collect(Collectors.toSet());
     }
 
-    public List<Tweet> getByUserId(String userId) {
-        return tweetRepository.getAllByUserIdOrderByPostedAtDesc(userId)
+    public List<Tweet> getByUserId(String userId, PageRequest pageRequest) {
+        return tweetRepository.getAllByUserIdOrderByPostedAtDesc(pageRequest.first(), pageRequest.offset(), userId)
                 .stream()
                 .map(tweetMapper::toDomain)
                 .toList();
     }
 
-    public List<Tweet> getMyTweets(Authentication authentication) {
-        return getByUserId(authentication.getName());
+    public List<Tweet> getMyTweets(PageRequest pageRequest, Authentication authentication) {
+        return getByUserId(authentication.getName(), pageRequest);
     }
 
     public List<Tweet> getFolloweeTweets(PageRequest pageRequest, Authentication authentication) {

@@ -1,7 +1,8 @@
 extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@external", "@extends", "@provides"])
 
 type Query {
-    myTweets: [Tweet]!
+    myTweets(pageRequest: PageRequest!): [Tweet]!
+    userTweets(userId: String!, pageRequest: PageRequest!): [Tweet]!
     tweetById(id: String!): Tweet!
     followeeTweets(pageRequest: PageRequest!): [Tweet]!
     taggedWith(hashtag: String!): [Tweet]!
@@ -16,7 +17,7 @@ type Mutation {
 
 type User @key(fields: "id") @extends {
     id: String! @external
-    tweets: [Tweet]!
+    tweets(pageRequest: PageRequest!): [Tweet]!
 }
 
 type Tweet @key(fields: "id") {

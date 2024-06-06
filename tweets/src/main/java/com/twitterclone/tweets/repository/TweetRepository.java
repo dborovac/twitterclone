@@ -13,7 +13,14 @@ import java.util.List;
 @Repository
 public interface TweetRepository extends Neo4jRepository<TweetEntity, String> {
 
-    List<TweetEntity> getAllByUserIdOrderByPostedAtDesc(String userId);
+    @Query("""
+            MATCH (tweet: Tweet {userId: $userId})
+            RETURN tweet
+            ORDER BY tweet.postedAt DESC
+            SKIP $offset
+            LIMIT $first
+            """)
+    List<TweetEntity> getAllByUserIdOrderByPostedAtDesc(Integer first, Integer offset, String userId);
 
     @Query("""
             MATCH (user: User {id: $userId})-[:FOLLOWS]->(anotherUser: User)<-[:TWEETED_BY]-(tweet: Tweet)

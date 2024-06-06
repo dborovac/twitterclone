@@ -40,15 +40,18 @@ public class TweetController {
     }
 
     @MutationMapping
-    public Tweet postTweet(
-            @Argument @Valid PostTweetRequest request,
-            @AuthenticationPrincipal Authentication authentication) {
+    public Tweet postTweet(@Argument @Valid PostTweetRequest request, @AuthenticationPrincipal Authentication authentication) {
         return tweetService.post(request, authentication);
     }
 
     @QueryMapping
-    public List<Tweet> myTweets(@AuthenticationPrincipal Authentication authentication) {
-        return tweetService.getMyTweets(authentication);
+    public List<Tweet> myTweets(@Argument PageRequest pageRequest, @AuthenticationPrincipal Authentication authentication) {
+        return tweetService.getMyTweets(pageRequest, authentication);
+    }
+
+    @QueryMapping
+    public List<Tweet> userTweets(@Argument String userId, @Argument PageRequest pageRequest) {
+        return tweetService.getByUserId(userId, pageRequest);
     }
 
     @MutationMapping
@@ -73,8 +76,8 @@ public class TweetController {
     }
 
     @SchemaMapping
-    public List<Tweet> tweets(User user) {
-        return tweetService.getByUserId(user.id());
+    public List<Tweet> tweets(User user, @Argument PageRequest pageRequest) {
+        return tweetService.getByUserId(user.id(), pageRequest);
     }
 
     @SchemaMapping
